@@ -31,38 +31,20 @@
                 <a href="home.html">sign out</a>
             </div>
             <div class="dashboard-main">
-                <div class="title">manage restaurants</div>
-                <label for="sortby">sort by:
-                    <select name="sortby" id="sortby">
-                        <option value="name">name</option>
-                        <option value="rating">rating</option>
-                        <option value="followers">followers</option>
-                    </select>
-                </select></label>
+                <div class="title">delete restaurant</div>
                 <div class="dashboard-list-container">
-                    <ul>
-                        <li class="restaurant-list-item header-list-item">
-                            <p>restaurant name:</p>
-                            <p>rating:</p>
-                            <p>followers:</p>
-                            <a href="" id="filler"></a>
-                            <a href="addNewRestaurant.html" id="new-restaurant-btn">+ new restaurant</a>
-                        </li>
-                        <li class="restaurant-list-item">
-                            <p>Los Hombres</p>
-                            <p>5/10</p>
-                            <p>1500</p>
-                            <a href="editRestaurant.html">edit</a>
-                            <a href="deleteRestaurant.html">- delete</a>
-                        </li>
-                        <li class="restaurant-list-item">
-                            <p>Cod and Log</p>
-                            <p>8/10</p>
-                            <p>27500</p>
-                            <a href="editRestaurant.html">edit</a>
-                            <a href="deleteRestaurant.html">- delete</a>
-                        </li>
-                    </ul>
+                        <form class="restaurant-input-grid" action="manageRestaurants.html">
+                            <input readonly maxlength="30" type="text" name="restaurant-name" id="restaurant-name" placeholder="restaurant name">
+                            <input readonly maxlength="60" type="text" name="restaurant-address" id="restaurant-address" placeholder="address">
+                            <input readonly maxlength="60" type="email" name="restaurant-email" id="restaurant-email" placeholder="email">
+                            <input readonly maxlength="30" type="text" name="restaurant-owner-name" id="restaurant-owner-name" placeholder="owner name">
+                            <input readonly maxlength="12" type="tel" name="restaurant-phone" id="restaurant-phone" placeholder="phone">
+                            <textarea readonly maxlength="60" type="text" name="restaurant-description" id="restaurant-description" placeholder="description"></textarea>
+                            <input readonly maxlength="30"type="text" name="restaurant-type" id="restaurant-type" placeholder="type">
+                            <input readonly maxlength="30"type="text" name="restaurant-member" id="restaurant-member" placeholder="membership">
+                            <button id="cancel-change-restaurant">cancel</button>
+                            <button id="confirm-change-restaurant">delete</button>
+                        </form>
                 </div>
             </div>
     </div>

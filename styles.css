@@ -296,12 +296,15 @@ DASHBOARD
 }
 #new-restaurant-btn{
     padding: 15px;
-    margin-left: 50px;
     background: var(--redGradient);
     color: white;
     border-radius: 25px;
     font-size: 16px;
     text-decoration: none;
+    margin-left: -30px;
+}
+#filler{
+    opacity: 0;
 }
 
 /*
@@ -313,11 +316,11 @@ ADD RESTAURANT
     margin-top: 12%;
     width: 96.5%;
     display: grid;
-    height: 50%;
+    height: 60%;
 
     gap: 15px;
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(5,1fr);
+    grid-template-rows: repeat(6,1fr);
 }
 .restaurant-input-grid > input{
     padding-left: 15px;
@@ -360,7 +363,7 @@ ADD RESTAURANT
     grid-column: 4 / span 1;
 }
 #confirm-change-restaurant{
-    grid-row: 5;
+    grid-row: 6;
     grid-column: 2 / span 2;
     background: var(--redGradient);
     color: var(--white);
@@ -369,6 +372,18 @@ ADD RESTAURANT
 
 }
 #confirm-change-restaurant:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+#cancel-change-restaurant{
+    grid-row: 5;
+    grid-column: 2 / span 2;
+    background: transparent;
+    color: var(--darkRed);
+    border: 1px solid var(--darkRed);
+    border-radius: 150px;
+}
+#cancel-change-restaurant:hover{
     cursor: pointer;
     opacity: 0.8;
 }
