@@ -319,6 +319,26 @@ DASHBOARD
     opacity: 0;
     margin-right: -20px;
 }
+#restaurantSelectFiller{
+    opacity: 0;
+    margin-right: 50px;
+}
+#foodFiller{
+    opacity: 0;
+    margin-right: 0px;
+}
+#foodFiller{
+    opacity: 0;
+    margin-right: 0px;
+}
+
+li > a {
+    text-decoration: none;
+}
+#itemFiller{
+    opacity: 0;
+    margin-right: 15px;
+}
 
 /*
 ADD RESTAURANT
