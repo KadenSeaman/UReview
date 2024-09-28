@@ -263,8 +263,8 @@ DASHBOARD
     font-size: 16px;
     text-align: center;
 }
-.restaurant-list-container{
-    width: 50%;
+.dashboard-list-container{
+    width: 80%;
     height: 70%;
     border-radius: 25px;
     background-color: white;
@@ -281,22 +281,94 @@ DASHBOARD
 .header-list-item{
     margin-bottom: 50px;
 }
-.restaurant-list-item > *{
+.restaurant-list-item > p{
     width: 150px;
     text-align: center;
 }
-.restaurant-list-item > button{
-    background-color: transparent;
+.restaurant-list-item > a{
+    padding: 15px 20px;
     color: var(--darkRed);
     border: 1px solid var(--darkRed);
-    border-radius: 25px;
+    border-radius: 25px; 
 }
-.restaurant-list-item > button:hover{
+.restaurant-list-item > a:hover{
     cursor: pointer;
 }
 #new-restaurant-btn{
-    margin-left: 150px;
+    padding: 15px;
+    margin-left: 50px;
     background: var(--redGradient);
     color: white;
     border-radius: 25px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+/*
+ADD RESTAURANT
+*/
+
+.restaurant-input-grid{
+    padding: 15px;
+    margin-top: 12%;
+    width: 96.5%;
+    display: grid;
+    height: 50%;
+
+    gap: 15px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(5,1fr);
+}
+.restaurant-input-grid > input{
+    padding-left: 15px;
+}
+.restaurant-input-grid > textarea{
+    padding-left: 15px;
+    padding-top: 12px;
+}
+#restaurant-name{
+    grid-row: 1;
+    grid-column: 1 / span 2;
+}
+#restaurant-address{
+    grid-row: 2;
+    grid-column: 1 / span 2;
+}
+#restaurant-email{
+    grid-row: 3;
+    grid-column: 1 / span 2;
+}
+#restaurant-owner-name{
+    grid-row: 4;
+    grid-column: 1 / span 1;
+}
+#restaurant-phone{
+    grid-row: 4;
+    grid-column: 2 / span 1;
+}
+#restaurant-description{
+    grid-row: 1 / span 3;
+    grid-column: 3 / span 2;
+    resize: none;
+}
+#restaurant-type{
+    grid-row: 4;
+    grid-column: 3 / span 1;
+}
+#restaurant-member{
+    grid-row: 4;
+    grid-column: 4 / span 1;
+}
+#confirm-change-restaurant{
+    grid-row: 5;
+    grid-column: 2 / span 2;
+    background: var(--redGradient);
+    color: var(--white);
+    border: none;
+    border-radius: 150px;
+
+}
+#confirm-change-restaurant:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
