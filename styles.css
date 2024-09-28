@@ -32,7 +32,7 @@ body{
 }
 
 .main-title{
-    font-size: 160px;
+    font-size: 120px;
     font-weight: normal;
     margin: 10px;
 }
@@ -48,6 +48,7 @@ body{
 
 #logo{
     margin-bottom: 20px;
+
 }
 
 .button-container{ 
@@ -135,11 +136,12 @@ body{
 #vertical-form{
     display: flex;
     flex-direction: column;    
+    align-items: center;
 }
 
 #bottom-hyperlink{ 
     position: absolute;
-    bottom: 50px;
+    bottom: 5%;
     color:var(--darkRed);
     text-decoration: none;
 }
@@ -200,6 +202,8 @@ DASHBOARD
     width: 20%;
     background:var(--redGradient);
     height: 100%;
+    overflow: scroll;
+    scroll-behavior: smooth;
 }
 .dashboard-right-container{
     width: 80%;
@@ -243,6 +247,7 @@ DASHBOARD
 .dashboard-link-container{
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
     color:var(--white);
     text-decoration: none;
@@ -264,7 +269,7 @@ DASHBOARD
     text-align: center;
 }
 .dashboard-list-container{
-    width: 80%;
+    width: 90%;
     height: 70%;
     border-radius: 25px;
     background-color: white;
@@ -301,10 +306,18 @@ DASHBOARD
     border-radius: 25px;
     font-size: 16px;
     text-decoration: none;
-    margin-left: -30px;
 }
-#filler{
+#restaurantFiller{
     opacity: 0;
+    margin-right: -30px;
+}
+#userFiller{
+    opacity: 0;
+    margin-right: 15px;
+}
+#memberFiller{
+    opacity: 0;
+    margin-right: -20px;
 }
 
 /*
@@ -312,9 +325,7 @@ ADD RESTAURANT
 */
 
 .restaurant-input-grid{
-    padding: 15px;
-    margin-top: 12%;
-    width: 96.5%;
+    width: 150%;
     display: grid;
     height: 60%;
 
@@ -323,7 +334,7 @@ ADD RESTAURANT
     grid-template-rows: repeat(6,1fr);
 }
 .restaurant-input-grid > input{
-    padding-left: 15px;
+    padding-left: 10px;
 }
 .restaurant-input-grid > textarea{
     padding-left: 15px;
@@ -369,7 +380,6 @@ ADD RESTAURANT
     color: var(--white);
     border: none;
     border-radius: 150px;
-
 }
 #confirm-change-restaurant:hover{
     cursor: pointer;
@@ -386,4 +396,59 @@ ADD RESTAURANT
 #cancel-change-restaurant:hover{
     cursor: pointer;
     opacity: 0.8;
+}
+
+/*
+manage member
+*/
+#memberName{
+    grid-row: 1;
+    grid-column: 1 / span 4;
+}
+#memberUsername{
+    grid-row: 2;
+    grid-column: 1 / span 4;
+}
+#memberEmail{
+    grid-row: 3;
+    grid-column: 1 / span 4;
+}
+#memberRole{
+    grid-row: 4;
+    grid-column: 1 / span 4;
+}
+
+@media screen and (max-height: 1000px) {
+    .input-outline{
+        width: 375px;
+        height: 50px;
+    }
+    .button-outline{
+        width: 380px;
+        height: 55px;
+    }
+    .title{
+        font-size: 40px;
+    }
+    #logo{
+        width: 200px;
+    }
+    #secondary-btn,#primary-btn{ 
+        display: block;
+        padding:20px;
+        width: 240px;
+        border-radius: 150px; 
+        font-size: 32px;
+    }
+    .restaurant-input-grid{
+        width: 79%;
+        display: grid;
+        height: 60%;
+    
+        gap: 15px;
+        grid-template-columns: repeat(4,30%);
+        grid-template-rows: repeat(6,40px);
+    }
+
+
 }

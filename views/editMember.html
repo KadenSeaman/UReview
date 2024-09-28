@@ -31,38 +31,16 @@
                 <a href="home.html">sign out</a>
             </div>
             <div class="dashboard-main">
-                <div class="title">manage restaurants</div>
-                <label for="sortby">sort by:
-                    <select name="sortby" id="sortby">
-                        <option value="name">name</option>
-                        <option value="rating">rating</option>
-                        <option value="followers">followers</option>
-                    </select>
-                </select></label>
+                <div class="title">edit member</div>
                 <div class="dashboard-list-container">
-                    <ul>
-                        <li class="restaurant-list-item header-list-item">
-                            <p>restaurant name:</p>
-                            <p>rating:</p>
-                            <p>followers:</p>
-                            <a href="" id="restaurantFiller"></a>
-                            <a href="addNewRestaurant.html" id="new-restaurant-btn">+ new restaurant</a>
-                        </li>
-                        <li class="restaurant-list-item">
-                            <p>Los Hombres</p>
-                            <p>5/10</p>
-                            <p>1500</p>
-                            <a href="editRestaurant.html">edit</a>
-                            <a href="deleteRestaurant.html">- delete</a>
-                        </li>
-                        <li class="restaurant-list-item">
-                            <p>Cod and Log</p>
-                            <p>8/10</p>
-                            <p>27500</p>
-                            <a href="editRestaurant.html">edit</a>
-                            <a href="deleteRestaurant.html">- delete</a>
-                        </li>
-                    </ul>
+                        <form class="restaurant-input-grid" action="manageMembers.html">
+                            <input type="text" placeholder="name" id="memberName">
+                            <input type="text" placeholder="username" id="memberUsername">
+                            <input type="email" placeholder="email" id="memberEmail">
+                            <input type="text" placeholder="role" id="memberRole">
+                            <button id="cancel-change-restaurant">cancel</button>
+                            <button id="confirm-change-restaurant">add</button>
+                        </form>
                 </div>
             </div>
     </div>
