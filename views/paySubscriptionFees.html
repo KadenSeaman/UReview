@@ -30,38 +30,25 @@
                 <a href="home.html">sign out</a>
             </div>
             <div class="dashboard-main">
-                <div class="title">manage restaurants</div>
-                <label for="sortby">sort by:
-                    <select name="sortby" id="sortby">
-                        <option value="name">name</option>
-                        <option value="rating">rating</option>
-                        <option value="followers">followers</option>
-                    </select>
-                </select></label>
+                <div class="title">pay fees</div>
                 <div class="dashboard-list-container">
-                    <ul>
-                        <li class="restaurant-list-item header-list-item">
-                            <p>restaurant name:</p>
-                            <p>rating:</p>
-                            <p>followers:</p>
-                            <a href="" id="restaurantFiller"></a>
-                            <a href="addNewRestaurant.html" id="new-restaurant-btn">+ new restaurant</a>
-                        </li>
-                        <li class="restaurant-list-item">
-                            <p>Los Hombres</p>
-                            <p>5/10</p>
-                            <p>1500</p>
-                            <a href="editRestaurant.html">edit</a>
-                            <a href="deleteRestaurant.html">- delete</a>
-                        </li>
-                        <li class="restaurant-list-item">
-                            <p>Cod and Log</p>
-                            <p>8/10</p>
-                            <p>27500</p>
-                            <a href="editRestaurant.html">edit</a>
-                            <a href="deleteRestaurant.html">- delete</a>
-                        </li>
-                    </ul>
+                        <div class="lr-dashboard-container">
+                            <div class="l-dashboard-container">
+                                <p class="title">amount owed:</p>
+                                <p class="title">$26.07</p>
+                            </div>
+                            <div class="r-dashboard-container">
+                                <form action="">
+                                    <input type="text" placeholder="card number" id="card-number">
+                                    <div class="card-container">
+                                        <input type="text" placeholder="expiration date" id="expiration-date">
+                                        <input type="text" placeholder="CVV" id="cvv">
+                                    </div>
+                                    <input type="text" placeholder="amount" id="amount">
+                                    <button id="pay" type="submit">complete payment</button>
+                                </form>
+                            </div>
+                        </div>
                 </div>
             </div>
     </div>

@@ -253,6 +253,7 @@ DASHBOARD
     text-decoration: none;
 }
 .dashboard-nav-link{
+    display: block;
     color:var(--white);
     text-decoration: none;
     width: 100%;
@@ -345,13 +346,13 @@ ADD RESTAURANT
 */
 
 .restaurant-input-grid{
-    width: 150%;
+    width: 100%;
     display: grid;
     height: 60%;
 
     gap: 15px;
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(6,1fr);
+    grid-template-rows: repeat(7,1fr);
 }
 .restaurant-input-grid > input{
     padding-left: 10px;
@@ -417,6 +418,19 @@ ADD RESTAURANT
     cursor: pointer;
     opacity: 0.8;
 }
+#warning-change-restaurant{
+    grid-row: 7;
+    grid-column: 2 / span 2;
+    background: transparent;
+    color: var(--darkRed);
+    border: 1px solid var(--darkRed);
+    border-radius: 150px;
+}
+#warning-change-restaurant:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 
 /*
 manage member
@@ -436,6 +450,98 @@ manage member
 #memberRole{
     grid-row: 4;
     grid-column: 1 / span 4;
+}
+#food-name{
+    grid-row: 1;
+    grid-column: 1 / span 4;
+}
+#food-desc{
+    grid-row: 2;
+    grid-column: 1 / span 4;
+}
+#food-type{
+    grid-row: 3;
+    grid-column: 1 / span 4;
+}
+#food-price{
+    grid-row: 4;
+    grid-column: 1 / span 4;
+}
+
+.lr-dashboard-container{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.r-dashboard-container, .l-dashboard-container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.l-dashboard-container{
+    flex-direction: column;
+}
+.r-dashboard-container > form{
+    background-color: var(--darkgrey);
+    padding: 40px;
+    width: 40%;
+    border-radius: 10px;
+}
+.r-dashboard-container > form > input{
+    height: 25px
+}
+.card-container > input{
+    height: 25px
+}
+.card-container{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+#card-number, #amount{
+    width: 98%;
+    margin-bottom: 20px;
+}
+#cvv{
+    width: 23%;
+}
+#expiration-date{
+    width: 65%;
+}
+#pay{
+    margin-top:20px;
+    width: 100%;
+    height: 25px;
+    background: var(--redGradient);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+#pay:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#followers{
+    display:block;
+    width: 100%;
+    text-align: center;
+    color:var(--darkRed);
+    text-decoration: none;
+    margin-top:20px;
+}
+ul > li{
+    list-style: none;
+}
+.follower-list-item{
+    display:block;
+    width: 100%;
+    text-align: center;
 }
 
 @media screen and (max-height: 1000px) {
