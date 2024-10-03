@@ -49,33 +49,32 @@
                         
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                                    echo <<< _END
-                                            <form class="restaurant-input-grid" method='post' action="updateRestaurant.php">
-                                                <input value=$row['restaurant_name'] maxlength="30" type="text" name="restaurant-name" id="restaurant-name" placeholder="restaurant name">
-                                                <input value=$row['address'] maxlength="60" type="text" name="restaurant-address" id="restaurant-address" placeholder="address">
-                                                <input value=$row['email'] maxlength="60" type="email" name="restaurant-email" id="restaurant-email" placeholder="email">
-                                                <input value=$row['owner_name'] maxlength="30" type="text" name="restaurant-owner-name" id="restaurant-owner-name" placeholder="owner name">
-                                                <input value=$row['phone'] maxlength="12" type="tel" name="restaurant-phone" id="restaurant-phone" placeholder="phone">
-                                                <textarea value=$row['description'] maxlength="60" type="text" name="restaurant-description" id="restaurant-description" placeholder="description"></textarea>
-                                                <input value=$row['type'] maxlength="30"type="text" name="restaurant-type" id="restaurant-type" placeholder="type">
-
-                                                <input id="confirm-change-restaurant" type='submit' value='update'>
-
-                                                <input type='hidden' name='update' value='yes'>
-                                                <input type='hidden' name='restaurant_id' value='$row[restaurant_id]'>
-                                            </form>
+                                    echo <<<_END
+                                        <form class='restaurant-input-grid' method='post' action='updateRestaurant.php'>
+                                            <input required value=$row[restaurant_name] maxlength='30' type='text' name='restaurant-name' id='restaurant-name' placeholder='restaurant name'>
+                                            <input required value=$row[address] maxlength='60' type='text' name='restaurant-address' id='restaurant-address' placeholder='address'>
+                                            <input required value=$row[email] maxlength='60' type='email' name='restaurant-email' id='restaurant-email' placeholder='email'>
+                                            <input required value=$row[owner_name] maxlength='30' type='text' name='restaurant-owner-name' id='restaurant-owner-name' placeholder='owner name'>
+                                            <input required value=$row[phone] maxlength='12' type='tel' name='restaurant-phone' id='restaurant-phone' placeholder='phone'>
+                                            <textarea required value=$row[description] maxlength='60' type='text' name='restaurant-description' id='restaurant-description' placeholder='description'></textarea>
+                                            <input required value=$row[type] maxlength='30'type='text' name='restaurant-type' id='restaurant-type' placeholder='type'>
+                                            <a href="viewRestaurant.php" id="cancel-change-restaurant">cancel</a>
+                                            <input id='confirm-change-restaurant' type='submit' value='update'>
+                                            <input type='hidden' name='update' value='yes'>
+                                            <input type='hidden' name='restaurant_id' value='$row[restaurant_id]'>
+                                        </form>
                                     _END;
                                 }
                             }
                             else{
-                                echo "No data found <br>"
+                                echo "No data found <br>";
                             }
                         }
                     ?>
 
 
 
-                        <a href="viewRestaurant.php" id="cancel-change-restaurant">cancel</a>
+
                 </div>
             </div>
     </div>
@@ -102,7 +101,7 @@ if(isset($_POST['restaurant_id'])){
     $restaurant_type = $_POST['restaurant-type'];
 
 
-    $query = "UPDATE restaurant SET restaurant_id='$restaurant_id',restuarant_name='$restaurant_name',address='$restaurant_address',email='$restaurant_email',owner_name='$restaurant_owner_name',phone='$restaurant_phone',description='$restaurant_description',type='$restaurant_type' WHERE restaurant_id=$restaurant_id";
+    $query = "UPDATE restaurant SET restaurant_id='$restaurant_id',restaurant_name='$restaurant_name',address='$restaurant_address',email='$restaurant_email',owner_name='$restaurant_owner_name',phone='$restaurant_phone',description='$restaurant_description',type='$restaurant_type' WHERE restaurant_id=$restaurant_id";
 
     $result = $conn->query($query);
     if(!$result) die($conn->error);

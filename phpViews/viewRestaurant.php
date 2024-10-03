@@ -53,7 +53,7 @@
                             $conn = new mysqli($hn,$un,$pw,$db);
                             if($conn->connect_error) die($conn->connect_error);
 
-                            $query = "SELECT * FROM restaurant";
+                            $query = "SELECT * FROM restaurant ORDER BY restaurant_name";
 
                             $result = $conn->query($query);
                             if(!$result) die($conn->error);
@@ -65,13 +65,13 @@
                                     echo <<< _END
                                             <li class="restaurant-list-item header-list-item">
                                                 <p>$row[restaurant_name]</p>
-                                                <p>$row[rating]</p>
-                                                <p>$row[followers]</p>
-                                                <a href="editRestaurant.php?restaurant_id=$row[restaurant_id]">edit</a>
+                                                <p>RATING ERROR</p>
+                                                <p>FOLLOWER ERROR</p>
+                                                <a href="updateRestaurant.php?restaurant_id=$row[restaurant_id]">edit</a>
                                                 <form action='deleteRestaurant.php' method='post'>
                                                     <input type='hidden' name='delete' value='yes'>
                                                     <input type='hidden' name='restaurant_id' value='$row[restaurant_id]'>
-                                                    <input type='submit' value='- delete'>
+                                                    <input class="delete-btn" type='submit' value='- delete'>
                                                 </form>
                                             </li>
 

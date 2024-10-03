@@ -15,7 +15,7 @@
         </div>
         <div class="right-container">
     
-            <form id="vertical-form" action="/phpViews/dashboard.php">
+            <form id="vertical-form" action="dashboard.php">
                 <h1 class="title">sign up</h1>
                 <input required class="input-outline" type="text" name="username" id="username" placeholder="username">
                 <input required class="input-outline" type="email" name="email" id="email" placeholder="email">

@@ -297,6 +297,17 @@ DASHBOARD
     border: 1px solid var(--darkRed);
     border-radius: 25px; 
 }
+.delete-btn{
+    display: block;
+    padding: 20px 25px;
+    background: var(--redGradient);
+    border: none;
+    color: var(--white);
+    border-radius: 25px; 
+}
+.delete-btn:hover{
+    cursor: pointer;
+}
 .restaurant-list-item > a:hover{
     cursor: pointer;
 }
@@ -413,6 +424,9 @@ ADD RESTAURANT
     color: var(--darkRed);
     border: 1px solid var(--darkRed);
     border-radius: 150px;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
 }
 #cancel-change-restaurant:hover{
     cursor: pointer;

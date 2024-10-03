@@ -16,7 +16,7 @@
                     <a href="mangageRestaurantInfo.php" class="dashboard-nav-link">manage restaurant info</a>
                     <a href="paySubscriptionFees.php" class="dashboard-nav-link">pay subscription fees</a>
                     <a href="accountManagement.php" class="dashboard-nav-link">account management</a>
-                    <a href="manageRestaurants.php" class="dashboard-nav-link">manage restaurants</a>
+                    <a href="viewRestaurant.php" class="dashboard-nav-link">manage restaurants</a>
                     <a href="manageMembers.php" class="dashboard-nav-link">manage members</a>
                     <a href="manageFoodItems.php" class="dashboard-nav-link">manage food items</a>
                     <a href="manageReviews.php" class="dashboard-nav-link">manage reviews</a>
@@ -35,4 +35,4 @@
     </div>
 
 </body>
-</html>2
+</html>
