@@ -33,9 +33,9 @@
                 <div class="title">manage restaurants</div>
                 <label for="sortby">sort by:
                     <select name="sortby" id="sortby">
-                        <option value="name">name</option>
-                        <option value="rating">rating</option>
-                        <option value="followers">followers</option>
+                        <option value="restaurant_name">name</option>
+                        <option value="description">rating</option>
+                        <option value="address">followers</option>
                     </select>
                 </select></label>
                 <div class="dashboard-list-container">
@@ -53,7 +53,9 @@
                             $conn = new mysqli($hn,$un,$pw,$db);
                             if($conn->connect_error) die($conn->connect_error);
 
-                            $query = "SELECT * FROM restaurant ORDER BY restaurant_name";
+                            $sortby = $_POST['sortby'];
+
+                            $query = "SELECT * FROM restaurant ORDER BY ".$sortby;
 
                             $result = $conn->query($query);
                             if(!$result) die($conn->error);
