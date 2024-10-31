@@ -11,24 +11,14 @@
     <div class="dashboard-container">
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
-            <div class="dashboard-link-container">
-                <a href="findRestaurants.php" class="dashboard-nav-link">find restaurants</a>
-                <a href="mangageRestaurantInfo.php" class="dashboard-nav-link">manage restaurant info</a>
-                <a href="paySubscriptionFees.php" class="dashboard-nav-link">pay subscription fees</a>
-                <a href="accountManagement.php" class="dashboard-nav-link">account management</a>
-                <a href="viewRestaurant.php" class="dashboard-nav-link">manage restaurants</a>
-                <a href="viewMember.php" class="dashboard-nav-link">manage members</a>
-                <a href="viewFood.php" class="dashboard-nav-link">manage food items</a>
-                <a href="viewReview.php" class="dashboard-nav-link">manage reviews</a>
-                <a href="viewUser.php" class="dashboard-nav-link">manage users</a>
-                <a href="revenueReport.php" class="dashboard-nav-link">revenue report</a>
-            </div>
+            <?php
+                require_once "../components/dashboardleftContainer.html";
+            ?>
         </div>
         <div class="dashboard-right-container">
-            <div class="dashboard-nav-bar">
-                <p>role: admin</p>
-                <a href="home.php">sign out</a>
-            </div>
+            <?php
+                require_once "../components/dashbaordNavBar.html";
+            ?>
             <div class="dashboard-main">
                 <div class="title">add restaurant</div>
                 <div class="dashboard-list-container">

@@ -399,7 +399,7 @@ ADD RESTAURANT
 }
 #restaurant-type{
     grid-row: 4;
-    grid-column: 3 / span 1;
+    grid-column: 3 / span 1F;
 }
 #restaurant-member{
     grid-row: 4;
@@ -449,19 +449,23 @@ ADD RESTAURANT
 /*
 manage member
 */
-#memberName{
+#user-name{
     grid-row: 1;
     grid-column: 1 / span 4;
 }
-#memberUsername{
+#user-username{
     grid-row: 2;
     grid-column: 1 / span 4;
 }
-#memberEmail{
+#user-email{
     grid-row: 3;
-    grid-column: 1 / span 4;
+    grid-column: 1 / span 2;
 }
-#memberRole{
+#user-role{
+    grid-row: 3;
+    grid-column: 3 / span 2;
+}
+#user-password{
     grid-row: 4;
     grid-column: 1 / span 4;
 }
