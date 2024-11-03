@@ -64,6 +64,8 @@
                                     
                                     $followerCount = $followerRow['sum'];
 
+                                    if($followerCount == null) $followerCount = 0;
+
                                     $ratingQuery = "SELECT r.restaurant_id, ROUND(AVG(rv.rating),1) as average_rating
                                     FROM restaurant r JOIN food f ON r.restaurant_id = f.restaurant_id JOIN review rv ON f.food_id = rv.food_id
                                     WHERE r.restaurant_id = $row[restaurant_id]
@@ -75,6 +77,8 @@
                                     $ratingRow = $ratingResult->fetch_array(MYSQLI_ASSOC);
 
                                     $rating = $ratingRow['average_rating'];
+
+                                    if($rating == null) $rating = "N/A";
 
 
                                     //will have to do seperate queries for rating and followers - placeholder for now

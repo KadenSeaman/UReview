@@ -25,88 +25,83 @@
                     require_once '../db.php';
                     require_once 'checksession.php';
 
-                    $restaurant_id = $_GET['restaurant_id'];
-
                     $conn = new mysqli($hn,$un,$pw,$db);
                     if($conn->connect_error) die($conn->connect_error);
 
-                    $query = "SELECT * FROM restaurant WHERE restaurant_id =$restaurant_id";
+                    $food_id = $_GET['food_id'];
+                    $restaurant_id = $_GET['restaurant_id'];
+
+                    $query = "SELECT * FROM food WHERE food_id=$food_id";
 
                     $result = $conn->query($query);
                     if(!$result) die($conn->error);
 
                     if($result->num_rows > 0){
                         while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                            echo "<div class='title'>manage $row[restaurant_name]'s food items</div>";
+                            echo "<div class='title'>$row[name]'s reviews</div>";
                         }
                     }
                     else{
                         echo "No data found <br>";
                     }
-                ?>
 
+                    $result->close();
+                    $conn->close();
+                ?>
                 <label for="sortby">sort by:
                     <select name="sortby" id="sortby">
-                        <option value="name">name</option>
-                        <option value="price">price</option>
+                        <option value="username">username</option>
                         <option value="rating">rating</option>
+                        <option value="date">date</option>
                     </select>
                 </select></label>
                 <div class="dashboard-list-container">
                     <ul>
                         <li class="restaurant-list-item header-list-item">
-                            <p>food:</p>
-                            <p>price:</p>
+                            <p>username:</p>
                             <p>rating:</p>
-                            <p>type:</p>
-                            <a href="" id="itemFiller"></a>
+                            <p>date:</p>
+                            <a href="" id="restaurantSelectFiller"></a>
                             <?php
+                                $page_roles = array('admin');
+                                require_once '../db.php';
+                                require_once 'checksession.php';
+
                                 $restaurant_id = $_GET['restaurant_id'];
-                                echo "<a href='addFoodItem.php?restaurant_id=$restaurant_id' id='new-restaurant-btn'>+ new item</a>"
-                            ?>
+                                $food_id = $_GET['food_id'];
+
+                                echo "<a href='addReview.php?restaurant_id=$restaurant_id&food_id=$food_id' id='new-restaurant-btn'>+ new review</a>";
+                        ?>
                         </li>
                         <?php
                             $page_roles = array('admin');
                             require_once '../db.php';
                             require_once 'checksession.php';
 
-                            $restaurant_id = $_GET['restaurant_id'];
-
                             $conn = new mysqli($hn,$un,$pw,$db);
                             if($conn->connect_error) die($conn->connect_error);
 
-                            $query = "SELECT * FROM food WHERE restaurant_id=$restaurant_id";
+                            $food_id = $_GET['food_id'];
+                            $restaurant_id = $_GET['restaurant_id'];
+
+                            $query = "SELECT * FROM review as r JOIN user as u ON r.user_id = u.user_id WHERE food_id=$food_id";
 
                             $result = $conn->query($query);
                             if(!$result) die($conn->error);
 
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_array(MYSQLI_ASSOC)){
-
-                                    $query = "SELECT ROUND(AVG(Rating),1) as avg FROM review WHERE food_id=$row[food_id]";
-        
-                                    $ratingResult = $conn->query($query);
-                                    if(!$ratingResult) die($conn->error);
-
-                                    $ratingRow = $ratingResult->fetch_array(MYSQLI_ASSOC);
-
-                                    $rating = 'N/A';
-
-                                    if($ratingRow['avg'] !== null){
-                                        $rating = $ratingRow['avg'];
-                                    }
-
                                     echo <<< _END
                                             <li class="restaurant-list-item header-list-item">
-                                                <a href="viewReview.php?food_id=$row[food_id]&restaurant_id=$restaurant_id">$row[name]</a>
-                                                <p>$row[price]</p>
-                                                <p>$rating</p>
-                                                <p>$row[type]</p>
-                                                <a href="updateFoodItem.php?food_id=$row[food_id]&restaurant_id=$restaurant_id">edit</a>
-                                                <form action='deleteFoodItem.php' method='post'>
+                                                <p>$row[username]</p>
+                                                <p>$row[rating]</p>
+                                                <p>$row[date]</p>
+                                                <a href="updateReview.php?review_id=$row[review_id]&food_id=$food_id&restaurant_id=$restaurant_id">edit</a>
+                                                <form action='deleteReview.php' method='post'>
                                                     <input type='hidden' name='delete' value='yes'>
-                                                    <input type='hidden' name='food_id' value='$row[food_id]'>
-                                                    <input type='hidden' name='restaurant_id' value='$restaurant_id'>
+                                                    <input type='hidden' name='restaurant_id' value=$restaurant_id>
+                                                    <input type='hidden' name='food_id' value=$food_id;>
+                                                    <input type='hidden' name='review_id' value='$row[review_id]'>
                                                     <input class="delete-btn" type='submit' value='- delete'>
                                                 </form>
                                             </li>
@@ -116,6 +111,10 @@
                             else{
                                 echo "No data found <br>";
                             }
+
+                            $result->close();
+                            $conn->close();
+
                         ?>
                     </ul>
                 </div>

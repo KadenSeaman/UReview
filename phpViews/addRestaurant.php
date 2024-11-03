@@ -71,5 +71,4 @@ if(isset($_POST['name'])){
 }
 $conn->close();
 
-
 ?>
