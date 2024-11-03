@@ -62,17 +62,12 @@
 
 <?php
 
-<<<<<<< HEAD
-require_once '../db.php';
-
-=======
 $page_roles = array('admin');
 require_once 'checksession.php';
 
 require_once '../db.php';
 
 
->>>>>>> master
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);
 
@@ -97,8 +92,4 @@ if(isset($_POST['name'])){
 }
 $conn->close();
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 ?>

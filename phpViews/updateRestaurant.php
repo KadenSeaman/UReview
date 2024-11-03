@@ -11,26 +11,6 @@
     <div class="dashboard-container">
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
-<<<<<<< HEAD
-            <div class="dashboard-link-container">
-                <a href="findRestaurants.php" class="dashboard-nav-link">find restaurants</a>
-                <a href="mangageRestaurantInfo.php" class="dashboard-nav-link">manage restaurant info</a>
-                <a href="paySubscriptionFees.php" class="dashboard-nav-link">pay subscription fees</a>
-                <a href="accountManagement.php" class="dashboard-nav-link">account management</a>
-                <a href="viewRestaurant.php" class="dashboard-nav-link">manage restaurants</a>
-                <a href="viewMember.php" class="dashboard-nav-link">manage members</a>
-                <a href="viewFood.php" class="dashboard-nav-link">manage food items</a>
-                <a href="viewReview.php" class="dashboard-nav-link">manage reviews</a>
-                <a href="viewUser.php" class="dashboard-nav-link">manage users</a>
-                <a href="revenueReport.php" class="dashboard-nav-link">revenue report</a>
-            </div>
-        </div>
-        <div class="dashboard-right-container">
-            <div class="dashboard-nav-bar">
-                <p>role: admin</p>
-                <a href="home.php">sign out</a>
-            </div>
-=======
             <?php
                 require_once "../components/dashboardleftContainer.php";
             ?>
@@ -39,15 +19,11 @@
             <?php
                 require_once "../components/dashboardNavBar.php";
             ?>
->>>>>>> master
             <div class="dashboard-main">
                 <div class="title">update restaurant</div>
                 <div class="dashboard-list-container">
                     <?php
-<<<<<<< HEAD
-=======
                         $page_roles = array('admin');
->>>>>>> master
                         require_once '../db.php';
 
                         $conn = new mysqli($hn, $un, $pw, $db);
@@ -58,12 +34,8 @@
                         
                             $query = "SELECT * FROM restaurant WHERE restaurant_id=$restaurant_id";
                         
-<<<<<<< HEAD
-                            
-=======
  
 
->>>>>>> master
                             $result = $conn->query($query);
                             if(!$result) die($conn->error);
                         
@@ -71,15 +43,6 @@
                                 while($row = $result->fetch_array(MYSQLI_ASSOC)){
                                     echo <<<_END
                                         <form class='restaurant-input-grid' method='post' action='updateRestaurant.php'>
-<<<<<<< HEAD
-                                            <input required value=$row[restaurant_name] maxlength='30' type='text' name='restaurant-name' id='restaurant-name' placeholder='restaurant name'>
-                                            <input required value=$row[address] maxlength='60' type='text' name='restaurant-address' id='restaurant-address' placeholder='address'>
-                                            <input required value=$row[email] maxlength='60' type='email' name='restaurant-email' id='restaurant-email' placeholder='email'>
-                                            <input required value=$row[owner_name] maxlength='30' type='text' name='restaurant-owner-name' id='restaurant-owner-name' placeholder='owner name'>
-                                            <input required value=$row[phone] maxlength='12' type='tel' name='restaurant-phone' id='restaurant-phone' placeholder='phone'>
-                                            <textarea required value=$row[description] maxlength='60' type='text' name='restaurant-description' id='restaurant-description' placeholder='description'></textarea>
-                                            <input required value=$row[type] maxlength='30'type='text' name='restaurant-type' id='restaurant-type' placeholder='type'>
-=======
                                             <input required value='$row[restaurant_name]' name='restaurant-name' id='restaurant-name' placeholder='restaurant name'  type='text'>
                                             <input required value='$row[address]' maxlength='60' type='text' name='restaurant-address' id='restaurant-address' placeholder='address'>
                                             <input required value='$row[email]' maxlength='60' type='email' name='restaurant-email' id='restaurant-email' placeholder='email'>
@@ -87,7 +50,6 @@
                                             <input required value='$row[phone]' maxlength='12' type='tel' name='restaurant-phone' id='restaurant-phone' placeholder='phone'>
                                             <textarea required maxlength='60' type='text' name='restaurant-description' id='restaurant-description' placeholder='description'>$row[description]</textarea>
                                             <input required value='$row[type]' maxlength='30'type='text' name='restaurant-type' id='restaurant-type' placeholder='type'>
->>>>>>> master
                                             <a href="viewRestaurant.php" id="cancel-change-restaurant">cancel</a>
                                             <input id='confirm-change-restaurant' type='submit' value='update'>
                                             <input type='hidden' name='update' value='yes'>
@@ -113,11 +75,8 @@
 
 
 <?php
-<<<<<<< HEAD
-=======
 $page_roles = array('admin');
 require_once 'checksession.php';
->>>>>>> master
 require_once '../db.php';
 
 $conn = new mysqli($hn, $un, $pw, $db);

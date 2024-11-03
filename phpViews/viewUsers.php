@@ -81,7 +81,7 @@
                                 }
                             }
                             else{
-                                echo "No data found <br>"
+                                echo "No data found <br>";
                             }
 
                             $result->close();
