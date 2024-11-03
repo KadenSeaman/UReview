@@ -12,7 +12,7 @@
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
             <?php
-                require_once "../components/dashboardleftContainer.html";
+                require_once "../components/dashboardleftContainer.php";
             ?>
         </div>
         <div class="dashboard-right-container">
@@ -28,7 +28,7 @@
 </html>
 
 <?php
-$page_roles = Array('admin','restaurant','user');
+$page_roles = Array('admin','owner','user');
 require_once "checksession.php";
 
 ?>

@@ -376,6 +376,26 @@ ADD RESTAURANT
     grid-row: 1;
     grid-column: 1 / span 2;
 }
+#user-name{
+    grid-row: 1;
+    grid-column: 1 / span 2; 
+}
+#user-username{
+    grid-row: 1;
+    grid-column: 3/ span 2;
+}
+#user-email{
+    grid-row: 2;
+    grid-column: 1 / span 2;
+}
+#user-role{
+    grid-row: 2;
+    grid-column: 3 / span 2;
+}
+#user-password{
+    grid-row: 3;
+    grid-column: 1 / span 4;
+}
 #restaurant-address{
     grid-row: 2;
     grid-column: 1 / span 2;
@@ -444,31 +464,10 @@ ADD RESTAURANT
     cursor: pointer;
     opacity: 0.8;
 }
-
-
 /*
 manage member
 */
-#user-name{
-    grid-row: 1;
-    grid-column: 1 / span 4;
-}
-#user-username{
-    grid-row: 2;
-    grid-column: 1 / span 4;
-}
-#user-email{
-    grid-row: 3;
-    grid-column: 1 / span 2;
-}
-#user-role{
-    grid-row: 3;
-    grid-column: 3 / span 2;
-}
-#user-password{
-    grid-row: 4;
-    grid-column: 1 / span 4;
-}
+
 #food-name{
     grid-row: 1;
     grid-column: 1 / span 4;
@@ -562,6 +561,8 @@ ul > li{
     text-align: center;
 }
 
+
+
 @media screen and (max-height: 1000px) {
     .input-outline{
         width: 375px;
@@ -593,6 +594,4 @@ ul > li{
         grid-template-columns: repeat(4,30%);
         grid-template-rows: repeat(6,40px);
     }
-
-
 }

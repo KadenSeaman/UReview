@@ -20,72 +20,89 @@
                 require_once "../components/dashboardNavBar.php";
             ?>
             <div class="dashboard-main">
-                <div class="title">manage restaurants</div>
+                <?php
+                    $page_roles = array('admin');
+                    require_once '../db.php';
+                    require_once 'checksession.php';
+
+                    $restaurant_id = $_GET['restaurant_id'];
+
+                    $conn = new mysqli($hn,$un,$pw,$db);
+                    if($conn->connect_error) die($conn->connect_error);
+
+                    $query = "SELECT * FROM restaurant WHERE restaurant_id =$restaurant_id";
+
+                    $result = $conn->query($query);
+                    if(!$result) die($conn->error);
+
+                    if($result->num_rows > 0){
+                        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+                            echo "<div class='title'>manage $row[restaurant_name]'s food items</div>";
+                        }
+                    }
+                    else{
+                        echo "No data found <br>";
+                    }
+                ?>
+
                 <label for="sortby">sort by:
                     <select name="sortby" id="sortby">
                         <option value="name">name</option>
+                        <option value="price">price</option>
                         <option value="rating">rating</option>
-                        <option value="followers">followers</option>
                     </select>
                 </select></label>
                 <div class="dashboard-list-container">
                     <ul>
                         <li class="restaurant-list-item header-list-item">
-                            <p>restaurant name:</p>
+                            <p>food:</p>
+                            <p>price:</p>
                             <p>rating:</p>
-                            <p>followers:</p>
-                            <a href="" id="restaurantFiller"></a>
-                            <a href="addRestaurant.php" id="new-restaurant-btn">+ new restaurant</a>
+                            <p>type:</p>
+                            <a href="" id="itemFiller"></a>
+                            <a href="addNewFoodItemAdmin.html" id="new-restaurant-btn">+ new item</a>
                         </li>
                         <?php
                             $page_roles = array('admin');
                             require_once '../db.php';
                             require_once 'checksession.php';
 
+                            $restaurant_id = $_GET['restaurant_id'];
+
                             $conn = new mysqli($hn,$un,$pw,$db);
                             if($conn->connect_error) die($conn->connect_error);
 
-                            $query = "SELECT * FROM restaurant ORDER BY restaurant_name";
-
-
+                            $query = "SELECT * FROM food WHERE restaurant_id=$restaurant_id";
 
                             $result = $conn->query($query);
                             if(!$result) die($conn->error);
 
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_array(MYSQLI_ASSOC)){
-                                    $restaurant_id = $row['restaurant_id'];
-                                    $followerQuery = "SELECT COUNT(*) as sum FROM follow WHERE restaurant_id=$restaurant_id";
 
-                                    $followerResult = $conn->query($followerQuery);
-                                    if(!$followerResult) die($conn->error);
-
-                                    $followerRow = $followerResult->fetch_array(MYSQLI_ASSOC);
-                                    
-                                    $followerCount = $followerRow['sum'];
-
-                                    $ratingQuery = "SELECT r.restaurant_id, ROUND(AVG(rv.rating),1) as average_rating
-                                    FROM restaurant r JOIN food f ON r.restaurant_id = f.restaurant_id JOIN review rv ON f.food_id = rv.food_id
-                                    WHERE r.restaurant_id = $row[restaurant_id]
-                                    GROUP BY r.restaurant_id";
-
-                                    $ratingResult = $conn->query($ratingQuery);
+                                    $query = "SELECT ROUND(AVG(Rating),1) as avg FROM review WHERE food_id=$row[food_id]";
+        
+                                    $ratingResult = $conn->query($query);
                                     if(!$ratingResult) die($conn->error);
 
                                     $ratingRow = $ratingResult->fetch_array(MYSQLI_ASSOC);
 
-                                    $rating = $ratingRow['average_rating'];
+                                    $rating = 'N/A';
 
+                                    if($ratingRow['avg'] !== null){
+                                        $rating = $ratingRow['avg'];
+                                    }
 
-                                    //will have to do seperate queries for rating and followers - placeholder for now
                                     echo <<< _END
                                             <li class="restaurant-list-item header-list-item">
-                                                <a href="viewFoodItem.php?restaurant_id=$restaurant_id">$row[restaurant_name]</a>
+                                                <p>$row[name]</p>
+                                                <p>$row[price]</p>
                                                 <p>$rating</p>
-                                                <p>$followerCount</p>
-                                                <a href="updateRestaurant.php?restaurant_id=$restaurant_id">edit</a>
-                                                <form action='deleteRestaurant.php' method='post'>
+                                                <p>$row[type]</p>
+                                                <a href="updateFoodItem.php?food_id=$row[food_id]&restaurant_id=$restaurant_id">edit</a>
+                                                <form action='deleteFoodItem.php' method='post'>
                                                     <input type='hidden' name='delete' value='yes'>
+                                                    <input type='hidden' name='food_id' value='$row[food_id]'>
                                                     <input type='hidden' name='restaurant_id' value='$restaurant_id'>
                                                     <input class="delete-btn" type='submit' value='- delete'>
                                                 </form>
@@ -96,13 +113,10 @@
                             else{
                                 echo "No data found <br>";
                             }
-
-                            $result->close();
-                            $conn->close();
-
                         ?>
                     </ul>
                 </div>
             </div>
     </div>
 </body>
+</html>

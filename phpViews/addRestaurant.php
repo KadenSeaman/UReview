@@ -12,12 +12,12 @@
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
             <?php
-                require_once "../components/dashboardleftContainer.html";
+                require_once "../components/dashboardleftContainer.php";
             ?>
         </div>
         <div class="dashboard-right-container">
             <?php
-                require_once "../components/dashbaordNavBar.html";
+                require_once "../components/dashboardNavBar.php";
             ?>
             <div class="dashboard-main">
                 <div class="title">add restaurant</div>
@@ -41,7 +41,11 @@
 
 <?php
 
+$page_roles = array('admin');
+require_once 'checksession.php';
+
 require_once '../db.php';
+
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);

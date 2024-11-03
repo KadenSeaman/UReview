@@ -1,5 +1,5 @@
 <?php
-    $page_roles = Array('admin','restaurant','user');
+    $page_roles = Array('admin','owner','user');
     require_once '../phpViews/checksession.php';
 
     $user = $_SESSION['user'];

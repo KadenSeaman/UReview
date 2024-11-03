@@ -12,12 +12,12 @@
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
             <?php
-                require_once "../components/dashboardleftContainer.html";
+                require_once "../components/dashboardleftContainer.php";
             ?>
         </div>
         <div class="dashboard-right-container">
             <?php
-                require_once "../components/dashboardNavBar.html";
+                require_once "../components/dashboardNavBar.php";
             ?>
             <div class="dashboard-main">
                 <div class="title">add user</div>
@@ -28,12 +28,12 @@
                         <input required type="email" name="email" placeholder="email" id="user-email">
                         <input required type="text" name="role" placeholder="role" id="user-role">
                         <input required type="text" name="password" placeholder="password" id="user-password">
-                        <a href="dashboard.php" id="cancel-change-restaurant">cancel</a>
+                        <a href="viewUser.php" id="cancel-change-restaurant">cancel</a>
                         <button id="confirm-change-restaurant">add</button>
                     </form>
                 </div>
             </div>
-    </>
+        </div>
 </body>
 </html>
 

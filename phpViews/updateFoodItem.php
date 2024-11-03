@@ -20,7 +20,7 @@
                 require_once "../components/dashboardNavBar.php";
             ?>
             <div class="dashboard-main">
-                <div class="title">update restaurant</div>
+                <div class="title">update food item</div>
                 <div class="dashboard-list-container">
                     <?php
                         $page_roles = array('admin');
@@ -29,30 +29,29 @@
                         $conn = new mysqli($hn, $un, $pw, $db);
                         if ($conn->connect_error) die($conn->connect_error);
                         
-                        if(isset($_GET['restaurant_id'])){
+                        if(isset($_GET['food_id'])){
                             $restaurant_id = $_GET['restaurant_id'];
-                        
-                            $query = "SELECT * FROM restaurant WHERE restaurant_id=$restaurant_id";
-                        
- 
 
+                            $food_id = $_GET['food_id'];
+                        
+                            $query = "SELECT * FROM food WHERE food_id=$food_id";
+                        
+                            
                             $result = $conn->query($query);
                             if(!$result) die($conn->error);
                         
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_array(MYSQLI_ASSOC)){
                                     echo <<<_END
-                                        <form class='restaurant-input-grid' method='post' action='updateRestaurant.php'>
-                                            <input required value='$row[restaurant_name]' name='restaurant-name' id='restaurant-name' placeholder='restaurant name'  type='text'>
-                                            <input required value='$row[address]' maxlength='60' type='text' name='restaurant-address' id='restaurant-address' placeholder='address'>
-                                            <input required value='$row[email]' maxlength='60' type='email' name='restaurant-email' id='restaurant-email' placeholder='email'>
-                                            <input required value='$row[owner_name]' maxlength='30' type='text' name='restaurant-owner-name' id='restaurant-owner-name' placeholder='owner name'>
-                                            <input required value='$row[phone]' maxlength='12' type='tel' name='restaurant-phone' id='restaurant-phone' placeholder='phone'>
-                                            <textarea required maxlength='60' type='text' name='restaurant-description' id='restaurant-description' placeholder='description'>$row[description]</textarea>
-                                            <input required value='$row[type]' maxlength='30'type='text' name='restaurant-type' id='restaurant-type' placeholder='type'>
-                                            <a href="viewRestaurant.php" id="cancel-change-restaurant">cancel</a>
+                                        <form class='restaurant-input-grid' method='post' action='updateFoodItem.php?restaurant_id=$restaurant_id'>
+                                            <input required value='$row[name]' name='name' id='restaurant-name' placeholder='food name'  type='text'>
+                                            <input required value='$row[type]' maxlength='60' type='text' name='type' id='restaurant-address' placeholder='type'>
+                                            <input required value='$row[price]' maxlength='60' type='text' name='price' id='restaurant-email' placeholder='price'>
+                                            <textarea required maxlength='60' type='text' name='description' id='restaurant-description' placeholder='description'>$row[description]</textarea>
+                                            <a href="viewFoodItem.php?restaurant_id=$restaurant_id" id="cancel-change-restaurant">cancel</a>
                                             <input id='confirm-change-restaurant' type='submit' value='update'>
                                             <input type='hidden' name='update' value='yes'>
+                                            <input type='hidden' name='food_id' value='$row[food_id]'>
                                             <input type='hidden' name='restaurant_id' value='$row[restaurant_id]'>
                                         </form>
                                     _END;
@@ -83,24 +82,23 @@ $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);
 
 
+
+
 //check if restaurant_id exists
-if(isset($_POST['restaurant_id'])){
+if(isset($_POST['food_id'])){
+    $food_id = $_POST['food_id'];
+    $food_name = $_POST['name'];
+    $food_price = $_POST['price'];
+    $food_type = $_POST['type'];
+    $food_description = $_POST['description'];
     $restaurant_id = $_POST['restaurant_id'];
-    $restaurant_name = $_POST['restaurant-name'];
-    $restaurant_address = $_POST['restaurant-address'];
-    $restaurant_email = $_POST['restaurant-email'];
-    $restaurant_owner_name = $_POST['restaurant-owner-name'];
-    $restaurant_phone = $_POST['restaurant-phone'];
-    $restaurant_description = $_POST['restaurant-description'];
-    $restaurant_type = $_POST['restaurant-type'];
 
-
-    $query = "UPDATE restaurant SET restaurant_id='$restaurant_id',restaurant_name='$restaurant_name',address='$restaurant_address',email='$restaurant_email',owner_name='$restaurant_owner_name',phone='$restaurant_phone',description='$restaurant_description',type='$restaurant_type' WHERE restaurant_id=$restaurant_id";
+    $query = "UPDATE food SET food_id='$food_id',name='$food_name',description='$food_description',type='$food_type',price='$food_price'WHERE food_id=$food_id";
 
     $result = $conn->query($query);
     if(!$result) die($conn->error);
 
-    header("Location: viewRestaurant.php");
+    header("Location: viewFoodItem.php?restaurant_id=$restaurant_id");
 }
 $conn->close();
     

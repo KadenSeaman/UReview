@@ -40,7 +40,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 		else
 		{
             $tmp_password = password_hash($tmp_password,PASSWORD_DEFAULT);
-            echo "$tmp_password <br> $passwordFromDB";
 			echo "login error<br>";
 		}	
 		

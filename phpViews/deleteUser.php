@@ -1,21 +1,21 @@
 <?php
 $page_roles = array('admin');
+require_once 'checksession.php';
 require_once '../db.php';
-    $page_roles = array('admin');
-    require_once 'checksession.php';
+
 
     $conn = new mysqli($hn, $un, $pw, $db);
     if ($conn->connect_error) die($conn->connect_error);
     
     if(isset($_POST['delete'])){
-        $restaurant_id = $_POST['restaurant_id'];
+        $user_id = $_POST['user_id'];
     
-        $query = "DELETE FROM restaurant WHERE restaurant_id='$restaurant_id' ";
+        $query = "DELETE FROM user WHERE user_id='$user_id'";
         
         $result = $conn->query($query);
         if(!$result) die($conn->error);
         
-        header("Location: viewRestaurant.php");
+        header("Location: viewUser.php");
     }
     
 
