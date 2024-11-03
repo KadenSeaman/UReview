@@ -11,6 +11,7 @@
     <div class="dashboard-container">
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
+<<<<<<< HEAD
             <div class="dashboard-link-container">
                 <a href="findRestaurants.php" class="dashboard-nav-link">find restaurants</a>
                 <a href="mangageRestaurantInfo.php" class="dashboard-nav-link">manage restaurant info</a>
@@ -29,6 +30,16 @@
                 <p>role: admin</p>
                 <a href="home.php">sign out</a>
             </div>
+=======
+            <?php
+                require_once "../components/dashboardleftContainer.php";
+            ?>
+        </div>
+        <div class="dashboard-right-container">
+            <?php
+                require_once "../components/dashboardNavBar.php";
+            ?>
+>>>>>>> master
             <div class="dashboard-main">
                 <div class="title">add restaurant</div>
                 <div class="dashboard-list-container">
@@ -51,8 +62,17 @@
 
 <?php
 
+<<<<<<< HEAD
 require_once '../db.php';
 
+=======
+$page_roles = array('admin');
+require_once 'checksession.php';
+
+require_once '../db.php';
+
+
+>>>>>>> master
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);
 
@@ -77,5 +97,8 @@ if(isset($_POST['name'])){
 }
 $conn->close();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 ?>

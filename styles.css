@@ -376,6 +376,29 @@ ADD RESTAURANT
     grid-row: 1;
     grid-column: 1 / span 2;
 }
+<<<<<<< HEAD
+=======
+#user-name{
+    grid-row: 1;
+    grid-column: 1 / span 2; 
+}
+#user-username{
+    grid-row: 1;
+    grid-column: 3/ span 2;
+}
+#user-email{
+    grid-row: 2;
+    grid-column: 1 / span 2;
+}
+#user-role{
+    grid-row: 2;
+    grid-column: 3 / span 2;
+}
+#user-password{
+    grid-row: 3;
+    grid-column: 1 / span 4;
+}
+>>>>>>> master
 #restaurant-address{
     grid-row: 2;
     grid-column: 1 / span 2;
@@ -399,12 +422,31 @@ ADD RESTAURANT
 }
 #restaurant-type{
     grid-row: 4;
+<<<<<<< HEAD
     grid-column: 3 / span 1;
+=======
+    grid-column: 3 / span 1F;
+>>>>>>> master
 }
 #restaurant-member{
     grid-row: 4;
     grid-column: 4 / span 1;
 }
+<<<<<<< HEAD
+=======
+#review-username{
+    grid-row: 1;
+    grid-column: 1/ span 4;
+}
+#review-date{
+    grid-row: 2;
+    grid-column: 1 / span 4;
+}
+#review-rating{
+    grid-row: 3;
+    grid-column: 1 / span 4;
+}
+>>>>>>> master
 #confirm-change-restaurant{
     grid-row: 6;
     grid-column: 2 / span 2;
@@ -444,6 +486,7 @@ ADD RESTAURANT
     cursor: pointer;
     opacity: 0.8;
 }
+<<<<<<< HEAD
 
 
 /*
@@ -465,6 +508,12 @@ manage member
     grid-row: 4;
     grid-column: 1 / span 4;
 }
+=======
+/*
+manage member
+*/
+
+>>>>>>> master
 #food-name{
     grid-row: 1;
     grid-column: 1 / span 4;
@@ -558,6 +607,11 @@ ul > li{
     text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
 @media screen and (max-height: 1000px) {
     .input-outline{
         width: 375px;
@@ -589,6 +643,9 @@ ul > li{
         grid-template-columns: repeat(4,30%);
         grid-template-rows: repeat(6,40px);
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> master
 }

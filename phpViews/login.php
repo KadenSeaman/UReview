@@ -15,7 +15,11 @@
         </div>
         <div class="right-container">
     
+<<<<<<< HEAD
             <form id="vertical-form" action="dashboard.php">
+=======
+            <form id="vertical-form" action="authenticate.php" method="post">
+>>>>>>> master
                 <h1 class="title">login</h1>
                 <input required class="input-outline" type="text" name="username" id="username" placeholder="username">
                 <input required class="input-outline" type="password" name="password" id="password" placeholder="password">
