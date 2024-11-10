@@ -56,7 +56,7 @@
                             <a href="addUser.php" id="new-restaurant-btn">+ new user</a>
                         </li>
                         <?php
-                            $page_roles = array('admin');
+                            $page_roles = array('admin, user, owner');
                             require_once '../../security/checksession.php';
                             require_once '../../db.php';
                             require_once '../../security/sanitize.php';

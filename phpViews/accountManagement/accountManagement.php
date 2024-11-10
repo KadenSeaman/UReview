@@ -43,8 +43,8 @@
                                 while($row = $result->fetch_array(MYSQLI_ASSOC)){
                                     echo <<<_END
                                         <form class="restaurant-input-grid" action="accountManagement.php" method="post">
-                                            <input readonly required value=$row[name] type="text" name="user-name" placeholder="name" id="user-name">
-                                            <input readonly required value=$row[username] type="text" name="user-username" placeholder="username" id="user-username">
+                                            <input hidden readonly required value=$row[name] type="text" name="user-name" placeholder="name" id="user-name">
+                                            <input hidden readonly required value=$row[username] type="text" name="user-username" placeholder="username" id="user-username">
                                             <input required value=$row[email] type="email" name="user-email" placeholder="email" id="user-email">
                                             <input type="text" name="user-password" placeholder="password - do not edit if you do not want to change passwords" id="user-role">
                                             <input type='hidden' name='update' value='yes'>
