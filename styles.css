@@ -281,7 +281,7 @@ DASHBOARD
     border-radius: 25px;
     background-color: white;
     box-shadow: 5px 5px var(--darkgrey);
-    padding: 25px;
+    padding: 10px;
     overflow: scroll;
 }
 .restaurant-list-item{
@@ -371,6 +371,14 @@ ADD RESTAURANT
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(7,1fr);
 }
+.restaurant-pay-grid{
+    width: 100%;
+    display: grid;
+    height: 100%;
+    gap: 15px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(10,1fr);
+}
 .restaurant-input-grid > input{
     padding-left: 10px;
 }
@@ -423,9 +431,30 @@ ADD RESTAURANT
     grid-column: 3 / span 2;
     resize: none;
 }
+#pay-description{
+    grid-row: 5 / span 3;
+    grid-column: 1 / span 2;
+    resize: none;
+}
 #restaurant-type{
     grid-row: 4;
     grid-column: 3 / span 1F;
+}
+#pay-type{
+    grid-row: 8;
+    grid-column: 1 / span 2;
+}
+#card-number{
+    grid-row: 4;
+    grid-column: 3 / span 2;
+}
+#cvv{
+    grid-row: 5;
+    grid-column: 4 / span 1;
+}
+#expiration-date{
+    grid-row: 5;
+    grid-column: 3 / span 1;
 }
 #restaurant-member{
     grid-row: 4;
@@ -452,6 +481,18 @@ ADD RESTAURANT
     border-radius: 150px;
 }
 #confirm-change-restaurant:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+#confirm-payment{
+    grid-row: 9 / span 2;
+    grid-column: 2 / span 2;
+    background: var(--redGradient);
+    color: var(--white);
+    border: none;
+    border-radius: 150px;
+}
+#confirm-payment:hover{
     cursor: pointer;
     opacity: 0.8;
 }
@@ -501,52 +542,6 @@ manage member
 #food-price{
     grid-row: 4;
     grid-column: 1 / span 4;
-}
-
-.lr-dashboard-container{
-    width: 90%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-.r-dashboard-container, .l-dashboard-container{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.l-dashboard-container{
-    flex-direction: column;
-}
-.r-dashboard-container > form{
-    background-color: var(--darkgrey);
-    padding: 40px;
-    width: 40%;
-    border-radius: 10px;
-}
-.r-dashboard-container > form > input{
-    height: 25px
-}
-.card-container > input{
-    height: 25px
-}
-.card-container{
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-#card-number, #amount{
-    width: 98%;
-    margin-bottom: 20px;
-}
-#cvv{
-    width: 23%;
-}
-#expiration-date{
-    width: 65%;
 }
 #pay{
     margin-top:20px;

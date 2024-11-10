@@ -11,7 +11,7 @@
         echo <<< _END
             <div class="dashboard-link-container">
                     <a href="Does not exist.php" class="dashboard-nav-link">find restaurants</a>
-                    <a href="Does not exist.php" class="dashboard-nav-link">pay subscription fees</a>
+                    <a href="../paySubscriptionFees/paySubscriptionFee.php" class="dashboard-nav-link">pay subscription fees</a>
                     <a href="../accountManagement/accountManagement.php" class="dashboard-nav-link">account management</a>
                     <a href="../restaurantManagement/viewRestaurant.php" class="dashboard-nav-link">manage restaurants</a>
                     <a href="../userManagement/viewUser.php" class="dashboard-nav-link">manage users</a>
@@ -23,7 +23,7 @@
         echo <<< _END
             <div class="dashboard-link-container">
                     <a href="Does not exist.php.php" class="dashboard-nav-link">find restaurants</a>
-                    <a href="Does not exist.php.php" class="dashboard-nav-link">pay subscription fees</a>
+                    <a href="../paySubscriptionFees/paySubscriptionFee.php" class="dashboard-nav-link">pay subscription fees</a>
                     <a href="../accountManagement/accountManagement.php" class="dashboard-nav-link">account management</a>
                     <a href="../restaurantManagemnet/viewRestaurant.php" class="dashboard-nav-link">manage restaurants</a>
                     <a href="../foodItemManagement/viewFoodItem.php" class="dashboard-nav-link">manage food items</a>
@@ -35,6 +35,7 @@
         echo <<< _END
             <div class="dashboard-link-container">
                     <a href="Does not exist.php.php" class="dashboard-nav-link">find restaurants</a>
+                    <a href="../paySubscriptionFees/paySubscriptionFee.php" class="dashboard-nav-link">restaurant subscription</a>
                     <a href="../accountManagement/accountManagement.php" class="dashboard-nav-link">account management</a>
             </div>
         _END;

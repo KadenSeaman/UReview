@@ -21,8 +21,8 @@
             ?>
             <div class="dashboard-main">
                 <div class="title">manage users</div>
-                <label for="sort-by-form">sort by:</label>
                 <form method="POST" onchange="updateSort()" id="sort-by-form">
+                <label for="sort-by-form">sort by:</label>
                             <select name="sortby" id="sortby">
                                 <?php
                                     $values = ['username','name','email','role'];
