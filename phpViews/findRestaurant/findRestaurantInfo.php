@@ -50,7 +50,7 @@
                                             <input readonly required value='$row[phone]' maxlength='12' type='tel' name='restaurant-phone' id='restaurant-phone' placeholder='phone'>
                                             <textarea readonly required maxlength='60' type='text' name='restaurant-description' id='restaurant-description' placeholder='description'>$row[description]</textarea>
                                             <input readonly required value='$row[type]' maxlength='30'type='text' name='restaurant-type' id='restaurant-type' placeholder='type'>
-                                            <a href="findRestaurant.php" id="cancel-change-restaurant">cancel</a>
+                                            <a href="findRestaurant.php" id="cancel-change-restaurant">back</a>
                                             <input type='hidden' name='restaurant_id' value='$row[restaurant_id]'>
                                         </form>
                                     _END;

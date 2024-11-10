@@ -52,6 +52,9 @@
                             <p>rating:</p>
                             <p>followers:</p>
                             <a href="" id="restaurantFiller"></a>
+                            <a href="" id="restaurantFiller"></a>
+                            <a href="" id="restaurantFiller"></a>
+                            <a href="" id="restaurantFiller"></a>
                         </li>
                         <?php
                             $page_roles = array('admin','owner','user');
@@ -74,7 +77,7 @@
                                             r.description,
                                             COALESCE(ROUND(AVG(rv.rating), 1), 'N/A') as average_rating,
                                             COALESCE(COUNT(DISTINCT f.follow_id), 0) as follower_count
-                                        FROM 
+                                            FROM 
                                             restaurant r
                                             LEFT JOIN food fd ON r.restaurant_id = fd.restaurant_id
                                             LEFT JOIN review rv ON fd.food_id = rv.food_id
@@ -95,14 +98,41 @@
                                     $followerCount = $row['follower_count'];
                                     $averageRating = $row['average_rating'];
 
-                                    echo <<< _END
+                                    $user_id = $_SESSION['user']->user_id;
+                                    $followed = false;
+
+                                    $followQuery = "SELECT * FROM follow WHERE user_id='$user_id' AND restaurant_id='$restaurant_id'";
+                                    $followResult = $conn->query($followQuery);
+                                    if(!$followResult) die($conn->error);
+
+                                    while($followRow = $followResult->fetch_array(MYSQLI_ASSOC)){
+                                        if($followRow['user_id'] !== null){
+                                            $followed = true;
+                                        }
+                                    }
+
+                                    if($followed){
+                                        echo <<< _END
                                             <li class="restaurant-list-item header-list-item">
                                                 <a href="findFoodItem.php?restaurant_id=$restaurant_id">$row[restaurant_name]</a>
                                                 <p>$averageRating</p>
                                                 <p>$followerCount</p>
-                                                <a href="findRestaurantInfo.php?restaurant_id=$restaurant_id">Info</a>
+                                                <a href="followRestaurant.php?restaurant_id=$restaurant_id">info</a>
+                                                <a href="unfollowRestaurant.php?restaurant_id=$restaurant_id">unfollow</a>
                                             </li>
-                                    _END;
+                                        _END;
+                                    }
+                                    else{
+                                        echo <<< _END
+                                            <li class="restaurant-list-item header-list-item">
+                                                <a href="findFoodItem.php?restaurant_id=$restaurant_id">$row[restaurant_name]</a>
+                                                <p>$averageRating</p>
+                                                <p>$followerCount</p>
+                                                <a href="findRestaurantInfo.php?restaurant_id=$restaurant_id">info</a>
+                                                <a href="followRestaurant.php?restaurant_id=$restaurant_id">follow</a>
+                                            </li>
+                                        _END;
+                                    }
                                 }
                             }
                             else{
