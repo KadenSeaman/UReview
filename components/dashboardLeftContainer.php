@@ -25,9 +25,7 @@
                     <a href="../findRestaurant/findRestaurant.php" class="dashboard-nav-link">find restaurants</a>
                     <a href="../paySubscriptionFees/paySubscriptionFee.php" class="dashboard-nav-link">pay subscription fees</a>
                     <a href="../accountManagement/accountManagement.php" class="dashboard-nav-link">account management</a>
-                    <a href="../restaurantManagemnet/viewRestaurant.php" class="dashboard-nav-link">manage restaurants</a>
-                    <a href="../foodItemManagement/viewFoodItem.php" class="dashboard-nav-link">manage food items</a>
-                    <a href="../reviewManagement/viewReview.php" class="dashboard-nav-link">manage reviews</a>
+                    <a href="../ownerManagement/ownerViewRestaurant.php" class="dashboard-nav-link">manage restaurant</a>
             </div>
         _END;
     }
