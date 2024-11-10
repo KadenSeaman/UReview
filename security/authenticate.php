@@ -1,6 +1,6 @@
 <?php
 
-require_once '../db.php';
+require_once __DIR__.'/../db.php';
 require_once 'sanitize.php';
 require_once 'user.php';
 
@@ -11,7 +11,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	
 	//Get values from login screen
 	$tmp_username = sanitize($conn, $_POST['username']);
-	$tmp_password = sanitize($conn, $_POST['password']);
+	$tmp_password = $_POST['password'];
 	
 	//get password from DB w/ SQL
 	$query = "SELECT password FROM user WHERE username = '$tmp_username'";
@@ -35,21 +35,16 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 			$user = new User($tmp_username);			
 			$_SESSION['user'] = $user;
 				
-			header("Location: dashboard.php");
+			header("Location: ../phpViews/main/dashboard.php");
 		}
 		else
 		{
-            $tmp_password = password_hash($tmp_password,PASSWORD_DEFAULT);
 			echo "login error<br>";
 		}	
-		
 	}else{
-		echo "No such username <br>";
-	}
-		
-		
+		echo "No such username<br>";
+	}	
 }
 
 $conn->close();
-
 ?>

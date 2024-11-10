@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=2, initial-scale=1.0">
     <title>U Review</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="icon" href="../../assets/favicon.ico?" type="image/x-icon">
 </head>
 <body>
     <div class="dashboard-container">
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
             <?php
-                require_once "../components/dashboardleftContainer.php";
+                require_once "../../components/dashboardleftContainer.php";
             ?>
         </div>
         <div class="dashboard-right-container">
             <?php
-                require_once "../components/dashboardNavBar.php";
+                require_once "../../components/dashboardNavBar.php";
             ?>
             <div class="dashboard-main">
                 <?php
                     $page_roles = array('admin');
-                    require_once '../db.php';
-                    require_once 'checksession.php';
+                    require_once '../../security/checksession.php';
+                    require_once '../../db.php';
+                    require_once '../../security/sanitize.php';
 
-                    $restaurant_id = $_GET['restaurant_id'];
+                    $restaurant_id = sanitize($conn, $_GET['restaurant_id']);
 
                     $conn = new mysqli($hn,$un,$pw,$db);
                     if($conn->connect_error) die($conn->connect_error);
@@ -45,13 +46,30 @@
                     }
                 ?>
 
-                <label for="sortby">sort by:
+                <form method="POST" onchange="updateSort()" id="sort-by-form">
+                    <label for="sort-by-form">sort by:</label>
                     <select name="sortby" id="sortby">
-                        <option value="name">name</option>
-                        <option value="price">price</option>
-                        <option value="rating">rating</option>
+                        <?php
+                            $values = ['f.name','average_rating','f.type'];
+                            $valueLabels = ['name','rating','type'];
+
+                            $sortBy = $values[0];
+
+                            if(isset($_POST['sortby'])){
+                                $sortBy = $_POST['sortby'];
+                            }
+
+                            for($i = 0; $i < count($values); $i++){
+                                if($values[$i] == $sortBy){
+                                    echo "<option selected value=$values[$i]>$valueLabels[$i]</option>";
+                                }
+                                else{
+                                    echo "<option value=$values[$i]>$valueLabels[$i]</option>";
+                                }
+                            }
+                        ?>
                     </select>
-                </select></label>
+                </form>
                 <div class="dashboard-list-container">
                     <ul>
                         <li class="restaurant-list-item header-list-item">
@@ -67,40 +85,53 @@
                         </li>
                         <?php
                             $page_roles = array('admin');
-                            require_once '../db.php';
-                            require_once 'checksession.php';
+                            require_once '../../security/checksession.php';
+                            require_once '../../db.php';
+                            require_once '../../security/sanitize.php';
 
-                            $restaurant_id = $_GET['restaurant_id'];
+                            $restaurant_id = sanitize($conn,$_GET['restaurant_id']);
 
                             $conn = new mysqli($hn,$un,$pw,$db);
                             if($conn->connect_error) die($conn->connect_error);
 
-                            $query = "SELECT * FROM food WHERE restaurant_id=$restaurant_id";
+                            $sortBy = "f.name";
+
+                            if(isset($_POST['sortby'])){
+                                $sortBy = $_POST['sortby'];
+                            }
+
+                            $query = "SELECT 
+                                        f.food_id,
+                                        f.name,
+                                        f.price,
+                                        f.type,
+                                        f.description,
+                                        COALESCE(ROUND(AVG(r.rating),1), 'N/A') as average_rating,
+                                        COUNT(r.review_id) as review_count
+                                    FROM 
+                                        food f
+                                        LEFT JOIN review r ON f.food_id = r.food_id
+                                    WHERE 
+                                        f.restaurant_id = $restaurant_id 
+                                    GROUP BY 
+                                        f.food_id, 
+                                        f.name,
+                                        f.price,
+                                        f.type,
+                                        f.description
+                                    ORDER BY
+                                        $sortBy ASC;";
 
                             $result = $conn->query($query);
                             if(!$result) die($conn->error);
 
                             if($result->num_rows > 0){
                                 while($row = $result->fetch_array(MYSQLI_ASSOC)){
-
-                                    $query = "SELECT ROUND(AVG(Rating),1) as avg FROM review WHERE food_id=$row[food_id]";
-        
-                                    $ratingResult = $conn->query($query);
-                                    if(!$ratingResult) die($conn->error);
-
-                                    $ratingRow = $ratingResult->fetch_array(MYSQLI_ASSOC);
-
-                                    $rating = 'N/A';
-
-                                    if($ratingRow['avg'] !== null){
-                                        $rating = $ratingRow['avg'];
-                                    }
-
                                     echo <<< _END
                                             <li class="restaurant-list-item header-list-item">
-                                                <a href="viewReview.php?food_id=$row[food_id]&restaurant_id=$restaurant_id">$row[name]</a>
+                                                <a href="../reviewManagement/viewReview.php?food_id=$row[food_id]&restaurant_id=$restaurant_id">$row[name]</a>
                                                 <p>$row[price]</p>
-                                                <p>$rating</p>
+                                                <p>$row[average_rating]</p>
                                                 <p>$row[type]</p>
                                                 <a href="updateFoodItem.php?food_id=$row[food_id]&restaurant_id=$restaurant_id">edit</a>
                                                 <form action='deleteFoodItem.php' method='post'>
@@ -121,5 +152,10 @@
                 </div>
             </div>
     </div>
+    <script>
+        const updateSort = () => {
+            document.getElementById("sort-by-form").submit();
+        }
+    </script>
 </body>
 </html>

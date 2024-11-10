@@ -1,5 +1,4 @@
 <?php
-
     require_once 'user.php';
 
     //session check
@@ -25,10 +24,10 @@
             header("Location: unauthorized.php");
             exit();
         }	
-        
+    
         
     }else{ //not in session
-        header("Location: login.php");
+        header("Location: ../main/home.php");
     }
 
 ?>

@@ -1,7 +1,9 @@
 <?php
 $page_roles = array('admin');
-require_once 'checksession.php';
-require_once '../db.php';
+
+require_once '../../security/checksession.php';
+require_once '../../db.php';
+require_once '../../security/sanitize.php';
 
 
     $conn = new mysqli($hn, $un, $pw, $db);

@@ -1,6 +1,6 @@
 <?php
 
-require_once "../db.php";
+require_once __DIR__."/../db.php";
 
 $conn = new mysqli($hn,$un,$pw,$db);
 if($conn->connect_error) die ($conn->connect_error);
@@ -31,7 +31,6 @@ class User{
 		
 		$this->roles = $roles;
 
-
 		//user_id
 		$query="select user_id from user where username='$username'";
 		$result = $conn->query($query);
@@ -52,7 +51,5 @@ class User{
 	function getRoles(){
 		return $this->roles;
 	}
-
 }
-
 ?>

@@ -4,33 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=2, initial-scale=1.0">
     <title>U Review</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="icon" href="../../assets/favicon.ico?" type="image/x-icon">
 </head>
 <body>
     <div class="dashboard-container">
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
             <?php
-                require_once "../components/dashboardleftContainer.php";
+                require_once "../../components/dashboardleftContainer.php";
             ?>
         </div>
         <div class="dashboard-right-container">
             <?php
-                require_once "../components/dashboardNavBar.php";
+                require_once "../../components/dashboardNavBar.php";
             ?>
             <div class="dashboard-main">
                 <div class="title">edit user</div>
                 <div class="dashboard-list-container">
                 <?php
                         $page_roles = array('admin');
-                        require_once '../db.php';
+                        require_once '../../db.php';
+                        require_once '../../security/checksession.php';
+                        require_once '../../security/sanitize.php';
 
                         $conn = new mysqli($hn, $un, $pw, $db);
                         if ($conn->connect_error) die($conn->connect_error);
                         
                         if(isset($_GET['user_id'])){
-                            $user_id = $_GET['user_id'];
+                            $user_id = sanitize($conn, $_GET['user_id']);
                         
                             $query = "SELECT * FROM user WHERE user_id=$user_id";
                         
@@ -67,20 +69,21 @@
 
 <?php
 $page_roles = array('admin');
-require_once 'checksession.php';
-require_once '../db.php';
+require_once '../../security/checksession.php';
+require_once '../../db.php';
+require_once '../../security/sanitize.php';
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);
 
 
-//check if restaurant_id exists
+//check if user_id exists
 if(isset($_POST['user_id'])){
-    $user_id = $_POST['user_id'];
-    $user_name = $_POST['user-name'];
-    $user_username = $_POST['user-username'];
-    $user_email = $_POST['user-email'];
-    $user_role = $_POST['user-role'];
+    $user_id = sanitize($conn, $_POST['user_id']);
+    $user_name = sanitize($conn, $_POST['user-name']);
+    $user_username = sanitize($conn, $_POST['user-username']);
+    $user_email = sanitize($conn, $_POST['user-email']);
+    $user_role = sanitize($conn, $_POST['user-role']);
 
 
     $query = "UPDATE user SET user_id='$user_id',username='$user_name',name='$user_name',email='$user_email',role='$user_role' WHERE user_id =$user_id";

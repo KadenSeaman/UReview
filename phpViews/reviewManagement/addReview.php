@@ -4,33 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=2, initial-scale=1.0">
     <title>U Review</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="icon" href="../../assets/favicon.ico?" type="image/x-icon">
 </head>
 <body>
     <div class="dashboard-container">
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
             <?php
-                require_once "../components/dashboardleftContainer.php";
+                require_once "../../components/dashboardleftContainer.php";
             ?>
         </div>
         <div class="dashboard-right-container">
             <?php
-                require_once "../components/dashboardNavBar.php";
+                require_once "../../components/dashboardNavBar.php";
             ?>
             <div class="dashboard-main">
                 <div class="title">add review</div>
                 <div class="dashboard-list-container">
                     <?php
-                    //these two get not work
                         $page_roles = array('admin');
-                        require_once 'checksession.php';
-                        
-                        require_once '../db.php';
+                        require_once '../../security/checksession.php';
+                        require_once '../../db.php';
+                        require_once '../../security/sanitize.php';
 
-                        $restaurant_id = $_GET['restaurant_id'];
-                        $food_id = $_GET['food_id'];
+                        $restaurant_id = sanitize($conn, $_GET['restaurant_id']);
+                        $food_id = sanitize($conn, $_GET['food_id']);
 
                         echo <<< _END
                             <form class="restaurant-input-grid" method="post" action="addReview.php?restaurant_id=$restaurant_id&food_id=$food_id">
@@ -53,20 +52,20 @@
 <?php
 
 $page_roles = array('admin');
-require_once 'checksession.php';
-
-require_once '../db.php';
+require_once '../../security/checksession.php';
+require_once '../../db.php';
+require_once '../../security/sanitize.php';
 
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);
 
 if(isset($_POST['username'])){
-    $username = $_POST['username'];
-    $date = $_POST['date'];
-    $rating = $_POST['rating'];
-    $restaurant_id = $_POST['restaurant_id'];
-    $food_id = $_POST['food_id'];
+    $username = sanitize($conn, $_POST['username']);
+    $date = sanitize($conn, $_POST['date']);
+    $rating = sanitize($conn, $_POST['rating']);
+    $restaurant_id = sanitize($conn, $_POST['restaurant_id']);
+    $food_id = sanitize($conn, $_POST['food_id']) ;
 
     $query = "SELECT * FROM user WHERE username='$username'";
 
@@ -77,7 +76,7 @@ if(isset($_POST['username'])){
         $user_id = $result->fetch_array(MYSQLI_ASSOC);
         $user_id = $user_id['user_id'];
 
-        $query = "SELECT * FROM review WHERE user_id=$user_id";
+        $query = "SELECT * FROM review WHERE user_id=$user_id AND food_id=$food_id";
         $result = $conn->query($query);
         if(!$result) die($conn->error);
 

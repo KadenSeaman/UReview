@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U Review</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="icon" href="../../assets/favicon.ico?" type="image/x-icon">
 </head>
 <body>
     <div class="l-r-container">
@@ -14,7 +14,6 @@
             <p>enter your username, email, name and password to create an account</p>
         </div>
         <div class="right-container">
-    
             <form id="vertical-form" action="signup.php" method="post">
                 <h1 class="title">sign up</h1>
                 <input required class="input-outline" type="text" name="username" id="username" placeholder="username">
@@ -23,7 +22,6 @@
                 <input required class="input-outline" type="password" name="password" id="password" placeholder="password">
                 <button class="button-outline"type="submit">sign up</button>
             </form>
-    
             <a id="bottom-hyperlink" href="login.php">returning user? login instead</a>
         </div>
     </div>
@@ -33,8 +31,8 @@
 
 <?php
 
-require_once '../db.php';
-require_once 'sanitize.php';
+require_once '../../db.php';
+require_once '../../security/sanitize.php';
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die($conn->connect_error);
@@ -47,7 +45,6 @@ if(isset($_POST['name'])){
 	$email = sanitize($conn, $_POST['email']);
 	$password = sanitize($conn, $_POST['password']); 
     $role = ("user");
-
 
     $existsQuery = "SELECT * FROM user WHERE username='$username'";
     $existsResults = $conn->query($existsQuery);
@@ -70,6 +67,4 @@ if(isset($_POST['name'])){
     }
 }
 $conn->close();
-
-
 ?>

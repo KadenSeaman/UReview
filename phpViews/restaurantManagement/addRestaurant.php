@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=2, initial-scale=1.0">
     <title>U Review</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="icon" href="../../assets/favicon.ico?" type="image/x-icon">
 </head>
 <body>
     <div class="dashboard-container">
         <div class="dashboard-left-container">
             <h1 class="dashboard-nav-title">U Review</h1>
             <?php
-                require_once "../components/dashboardleftContainer.php";
+                require_once "../../components/dashboardleftContainer.php";
             ?>
         </div>
         <div class="dashboard-right-container">
             <?php
-                require_once "../components/dashboardNavBar.php";
+                require_once "../../components/dashboardNavBar.php";
             ?>
             <div class="dashboard-main">
                 <div class="title">add restaurant</div>
@@ -42,9 +42,9 @@
 <?php
 
 $page_roles = array('admin');
-require_once 'checksession.php';
-
-require_once '../db.php';
+require_once '../../security/checksession.php';
+require_once '../../db.php';
+require_once '../../security/sanitize.php';
 
 
 $conn = new mysqli($hn, $un, $pw, $db);
@@ -52,13 +52,13 @@ if ($conn->connect_error) die($conn->connect_error);
 
 //check if restaurant_id exists
 if(isset($_POST['name'])){
-    $restaurant_name = $_POST['name'];
-    $restaurant_address = $_POST['address'];
-    $restaurant_email = $_POST['email'];
-    $restaurant_owner_name = $_POST['owner-name'];
-    $restaurant_phone = $_POST['phone'];
-    $restaurant_description = $_POST['description'];
-    $restaurant_type = $_POST['type'];
+    $restaurant_name = sanitize($conn, $_POST['name']);
+    $restaurant_address = sanitize($conn, $_POST['address']);
+    $restaurant_email = sanitize($conn, string: $_POST['email']);
+    $restaurant_owner_name = sanitize($conn, string: $_POST['owner-name']);
+    $restaurant_phone = sanitize($conn, $_POST['phone']);
+    $restaurant_description = sanitize($conn, $_POST['description']);
+    $restaurant_type = sanitize($conn, $_POST['type']);
 
 
     $query = "INSERT INTO restaurant(restaurant_name,address,email,owner_name,phone,description,type)
